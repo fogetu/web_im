@@ -1,0 +1,83 @@
+package chat_room_service
+
+import (
+	"errors"
+	"github.com/astaxie/beego/logs"
+	"github.com/fogetu/web_im/models/chat_room_model"
+	ormUer "github.com/fogetu/web_im/models/user_model"
+	"github.com/gorilla/websocket"
+	"time"
+)
+
+func CreateRoom(roomName string) (bool, error) {
+	chat_room_model.New(roomName)
+	return true, nil
+}
+
+// 用户加入ROOM
+func JoinRoom(userID int32, roomID int32, ws *websocket.Conn) (bool, error) {
+	userIDForModel := chat_room_model.UserID(userID)
+	roomIDForModel := chat_room_model.RoomID(roomID)
+	if _, ok := chat_room_model.RoomList[roomIDForModel]; !ok {
+		return false, errors.New("room id is not exist")
+	}
+	OrmUserModel := ormUer.OrmUserModel{}
+	userName := OrmUserModel.GetByID(int32(userID)).Name
+	// 优先改变刚刚加入ROOM的当前用户状态
+	if userMap, ok := chat_room_model.RoomUserList[userIDForModel]; ok {
+		if user, ok := userMap[roomIDForModel]; ok {
+			user.IsOnline = true
+			logs.Info("老用户上线:", userName, "ROOM_ID:", roomID)
+		} else {
+			userMap[roomIDForModel] = chat_room_model.UserChatRoom{RoomID: chat_room_model.RoomID(roomID),
+				JoinTime: time.Now().Unix(), IsOnline: true}
+			logs.Info("新用户加入:", userName, "ROOM_ID:", roomID, "FROM:1")
+		}
+	} else {
+		chat_room_model.RoomUserList[userIDForModel] = chat_room_model.UserChatRoomMap{roomIDForModel:
+		chat_room_model.UserChatRoom{RoomID: roomIDForModel, JoinTime: time.Now().Unix(), IsOnline: true}}
+		logs.Info("新用户加入:", userName, "ROOM_ID:", roomID, "FROM:2")
+	}
+	return true, nil
+}
+
+// 用户退出ROOM
+func LeaveRoom(userID int32, roomID int32) (bool, error) {
+	if _, ok := chat_room_model.RoomList[chat_room_model.RoomID(roomID)]; !ok {
+		return false, errors.New("room id is not exist")
+	}
+	if _, ok := chat_room_model.RoomUserList[chat_room_model.UserID(userID)]; ok {
+		delete(chat_room_model.RoomUserList, chat_room_model.UserID(userID))
+	}
+	return true, nil
+}
+
+// 用户上线
+func UserOnline(userID chat_room_model.UserID, ws *websocket.Conn) (bool, error) {
+	chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn: ws}
+	// 他的Join的所有ROOM改变状态
+	if _, ok := chat_room_model.RoomUserList[userID]; !ok {
+		logs.Info("用户上线,用户未加入任何ROOM:", userID)
+		return true, nil
+	}
+	for key, val := range chat_room_model.RoomUserList[userID] {
+		logs.Info("用户上线,更改ROOM用户状态:", "userID:", userID, "roomID:", key)
+		val.IsOnline = true
+	}
+	return true, nil
+}
+
+// 用户下线
+func UserOffline(userID chat_room_model.UserID, ws *websocket.Conn) (bool, error) {
+	// 他的Join的所有ROOM改变状态
+	defer ws.Close()
+	if _, ok := chat_room_model.RoomUserList[userID]; !ok {
+		logs.Info("用户下线,用户未加入任何ROOM:", userID)
+		return true, nil
+	}
+	for key, val := range chat_room_model.RoomUserList[userID] {
+		logs.Info("用户下线,更改ROOM用户状态:", "userID:", userID, "roomID:", key)
+		val.IsOnline = false
+	}
+	return true, nil
+}
