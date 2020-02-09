@@ -3,19 +3,19 @@ package chat_events
 import (
 	"encoding/json"
 	"github.com/astaxie/beego/logs"
-	"github.com/gorilla/websocket"
-	"time"
 	"github.com/fogetu/web_im/models/chat_room_model"
 	"github.com/fogetu/web_im/models/message_model"
 	"github.com/fogetu/web_im/service/chat_room_service"
+	"github.com/gorilla/websocket"
+	"time"
 )
 
 type ChatEvent uint8
 
 const (
-	EVENT_ONLINE  ChatEvent = iota // 用户上线
-	EVENT_OFFLINE                  // 用户下线
-	EVENT_MESSAGE                  // 用户发信息
+	EventOnline  ChatEvent = iota // 用户上线
+	EventOffline                  // 用户下线
+	EventMessage                  // 用户发信息
 )
 
 type Event struct {
@@ -34,11 +34,11 @@ func init() {
 			select {
 			case event := <-Publish:
 				switch event.EventType {
-				case EVENT_ONLINE:
+				case EventOnline:
 					onlineHandle(event.Body)
-				case EVENT_OFFLINE:
+				case EventOffline:
 					offlineHandle(event.Body)
-				case EVENT_MESSAGE:
+				case EventMessage:
 					messageHandle(event.Body)
 				}
 
@@ -84,6 +84,9 @@ func messageHandle(body string) {
 		logs.Error(err)
 		return
 	}
+	msgData.MsgID = message_model.GetIncreamID()
+	msgData.CreateAt = time.Now().Unix()
+	//msgData.UserID = chat_events.DecodeToken(msgData.UserToken)
 	message_model.MessageData.PushBack(msgData)
 	// 广播当前ROOM在线用户
 	roomUsers := chat_room_model.RoomList[msgData.RoomID].RoomUserList
@@ -96,7 +99,9 @@ func messageHandle(body string) {
 		if ws != nil {
 			if ws.WriteMessage(websocket.TextMessage, []byte(body)) != nil {
 				// User disconnected.
-				Publish <- New(EVENT_OFFLINE, time.Now().Unix(), `{"UserID":`+string(userID)+`}`)
+				Publish <- New(EventOffline, time.Now().Unix(), `{"UserID":`+string(userID)+`}`)
+			} else {
+				logs.Info("广播消息room_id:", msgData.RoomID, "user_id:", userID)
 			}
 		}
 	}

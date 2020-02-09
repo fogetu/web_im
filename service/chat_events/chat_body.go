@@ -2,6 +2,7 @@ package chat_events
 
 import (
 	"github.com/fogetu/web_im/models/chat_room_model"
+	"web_im/models/message_model"
 )
 
 type OnlineBody struct {
@@ -15,10 +16,10 @@ type OfflineBody struct {
 // ROOM消息
 // 当有人单独回复某条消息,当前消息所属的UserID用户会被提醒
 type MessageBody struct {
-	MsgID       int64
-	MsgContent  string // html
-	CreateAt    int64
-	RoomID      chat_room_model.RoomID
-	ParentMsgID int64 // 是room或者channel下的任意话题，参考slack实现
-	UserID      chat_room_model.UserID
+	message_model.MessageModel
+	UserToken string
+}
+
+func DecodeToken(token string) chat_room_model.UserID {
+	return 0
 }

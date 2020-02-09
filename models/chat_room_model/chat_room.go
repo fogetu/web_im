@@ -12,9 +12,10 @@ type ChatRoom struct {
 	RoomID   RoomID
 	RoomName string
 	//UserIDList   list.List
-	RoomPic      string
-	LastMsg      string
-	RoomUserList RoomUserMap
+	RoomPic        string
+	LastMsg        string
+	CreateByUserID UserID
+	RoomUserList   RoomUserMap
 }
 
 type RoomID int32
@@ -32,8 +33,8 @@ type ActiveUserInfo struct {
 
 var (
 	IDIncreamForRoom int32
-	RoomUserList     RoomUserMap
 )
+var RoomUserList = make(RoomUserMap)
 var RoomList = make(map[RoomID]*ChatRoom)
 var ActiveUser = make(map[UserID]ActiveUserInfo)
 
@@ -53,11 +54,11 @@ type UserChatRoom struct {
 	IsOnline    bool
 }
 
-func New(name string) *ChatRoom {
+func New(userID UserID, name string) *ChatRoom {
 	atomic.AddInt32(&IDIncreamForRoom, 1)
 	myRoomID := RoomID(IDIncreamForRoom)
 	index := rand.Intn(1)
 	RoomList[myRoomID] = &ChatRoom{RoomName: name, RoomID: myRoomID,
-		RoomPic: roomPics[index], RoomUserList: RoomUserList}
+		RoomPic: roomPics[index], RoomUserList: RoomUserList, CreateByUserID: userID}
 	return RoomList[myRoomID]
 }

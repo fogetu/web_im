@@ -9,15 +9,14 @@ import (
 	"time"
 )
 
-func CreateRoom(roomName string) (bool, error) {
-	chat_room_model.New(roomName)
-	return true, nil
+func CreateRoom(userID chat_room_model.UserID, roomName string) (*chat_room_model.ChatRoom, error) {
+	return chat_room_model.New(userID, roomName), nil
 }
 
 // 用户加入ROOM
-func JoinRoom(userID int32, roomID int32, ws *websocket.Conn) (bool, error) {
-	userIDForModel := chat_room_model.UserID(userID)
-	roomIDForModel := chat_room_model.RoomID(roomID)
+func JoinRoom(userID chat_room_model.UserID, roomID chat_room_model.RoomID) (bool, error) {
+	userIDForModel := userID
+	roomIDForModel := roomID
 	if _, ok := chat_room_model.RoomList[roomIDForModel]; !ok {
 		return false, errors.New("room id is not exist")
 	}
@@ -42,12 +41,12 @@ func JoinRoom(userID int32, roomID int32, ws *websocket.Conn) (bool, error) {
 }
 
 // 用户退出ROOM
-func LeaveRoom(userID int32, roomID int32) (bool, error) {
-	if _, ok := chat_room_model.RoomList[chat_room_model.RoomID(roomID)]; !ok {
+func LeaveRoom(userID chat_room_model.UserID, roomID chat_room_model.RoomID) (bool, error) {
+	if _, ok := chat_room_model.RoomList[roomID]; !ok {
 		return false, errors.New("room id is not exist")
 	}
-	if _, ok := chat_room_model.RoomUserList[chat_room_model.UserID(userID)]; ok {
-		delete(chat_room_model.RoomUserList, chat_room_model.UserID(userID))
+	if _, ok := chat_room_model.RoomUserList[userID]; ok {
+		delete(chat_room_model.RoomUserList, userID)
 	}
 	return true, nil
 }

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c26d45c-d51a-4914-9071-73c60e56ecdd" name="Default Changelist" comment="" />
+    <list default="true" id="3c26d45c-d51a-4914-9071-73c60e56ecdd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/chat_room.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/chat_room.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/chat_room_model/chat_room.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/chat_room_model/chat_room.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/message_model/message_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/message_model/message_model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/chat_events/chat_body.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/chat_events/chat_body.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/chat_events/chat_events.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/chat_events/chat_events.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/chat_room_service/chat_room.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/chat_room_service/chat_room.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,107 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/chat_room.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="31" column="38" lean-forward="true" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-              <folding>
-                <element signature="e#21#110#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/src/go1.12.15/src/runtime/asm_amd64.s">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="518" selection-start-line="518" selection-end-line="518" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/chat_room_model/chat_room.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/chat_room_model/room.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/message_model/message_model.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/task.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="77" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="77" />
-              <folding>
-                <element signature="e#14#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/user_model/user.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/service/chat_room_service/chat_room.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="58" column="31" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="31" />
-              <folding>
-                <element signature="e#27#224#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/go_data/pkg/mod/github.com/astaxie/beego@v1.12.0/config.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="165" selection-start-line="165" selection-end-line="165" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -120,11 +30,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>IDIncreamForRoom</find>
-      <find>Upgrader</find>
-      <find>getByID</find>
-      <find>OrmUserModel</find>
-      <find>userModel</find>
       <find>ok</find>
       <find>New</find>
       <find>UserChatRoom</find>
@@ -135,9 +40,7 @@
       <find>UserChatRoomMap</find>
       <find>RoomUserMap</find>
       <find>RoomList</find>
-      <find>msgData</find>
       <find>value</find>
-      <find>ws</find>
       <find>offline</find>
       <find>UserBaseMap</find>
       <find>RoomUserList</find>
@@ -145,11 +48,18 @@
       <find>userID</find>
       <find>&quot;web_im</find>
       <find>RoomBaseModel</find>
-      <find>Upgrade</find>
       <find>userName</find>
-      <find>ActiveUserInfo</find>
       <find>userIDForModel</find>
+      <find>ActiveUserInfo</find>
       <find>error</find>
+      <find>chat_room_model</find>
+      <find>userMap</find>
+      <find>JoinRoom</find>
+      <find>EventMessage</find>
+      <find>Upgrade</find>
+      <find>msgData</find>
+      <find>ws</find>
+      <find>UserID</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;github.com/fogetu/web_im</replace>
@@ -159,6 +69,9 @@
     </dirStrings>
   </component>
   <component name="GOROOT" path="$USER_HOME$/src/go1.12.15" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -177,23 +90,25 @@
         <option value="$PROJECT_DIR$/models/chat_room/char_room.go" />
         <option value="$PROJECT_DIR$/service/websocket/websocket.go" />
         <option value="$PROJECT_DIR$/models/chat_room_model/char_room.go" />
-        <option value="$PROJECT_DIR$/service/chat_room_service/chat_room.go" />
-        <option value="$PROJECT_DIR$/service/chat_events/chat_events.go" />
-        <option value="$PROJECT_DIR$/service/chat_events/chat_body.go" />
         <option value="$PROJECT_DIR$/models/chat_room_model/room.go" />
         <option value="$PROJECT_DIR$/models/user_model/user.go" />
+        <option value="$PROJECT_DIR$/models/common_response/common_response.go" />
+        <option value="$PROJECT_DIR$/service/chat_room_service/chat_room.go" />
+        <option value="$PROJECT_DIR$/models/chat_room_model/chat_room.go" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/controllers/chat_room.go" />
-        <option value="$PROJECT_DIR$/models/chat_room_model/chat_room.go" />
+        <option value="$PROJECT_DIR$/service/chat_events/chat_body.go" />
         <option value="$PROJECT_DIR$/models/message_model/message_model.go" />
+        <option value="$PROJECT_DIR$/service/chat_events/chat_events.go" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="725" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -209,173 +124,7 @@
             <path>
               <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
               <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="chat_room_model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="message_model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="user_model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="chat_events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="chat_room_service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="websocket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="chat_room_model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="message_model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="user_model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="chat_events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="chat_room_service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="web_im" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="websocket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="beego@v1.12.0" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="beego@v1.12.0" type="462c0819:PsiDirectoryNode" />
-              <item name="grace" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="mysql@v1.4.1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web_im" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go Modules &lt;web_im&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="mysql@v1.4.1" type="462c0819:PsiDirectoryNode" />
-              <item name=".github" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -386,6 +135,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="false" />
@@ -400,6 +150,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/models/chat" />
       <recent name="$PROJECT_DIR$/service/websocket" />
@@ -433,9 +186,9 @@
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="725" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="725" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2536349" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2536349" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -448,7 +201,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.328594" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.328594" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -483,15 +236,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/controllers/chat_room.go</url>
-          <line>19</line>
+          <line>104</line>
           <properties />
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/controllers/chat_room.go</url>
-          <line>37</line>
+          <line>19</line>
           <properties />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/chat_room.go</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/chat_room.go</url>
+          <line>87</line>
+          <properties />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -642,26 +407,6 @@
         <state relative-caret-position="-3147" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/chat_events/chat_events.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-          <folding>
-            <element signature="e#21#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/chat_events/chat_body.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#21#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/default.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -669,6 +414,13 @@
           <folding>
             <element signature="e#21#59#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/chat_room_model/room.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -681,53 +433,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/task.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/go_data/pkg/mod/github.com/astaxie/beego@v1.12.0/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="165" selection-start-line="165" selection-end-line="165" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="77" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="77" />
-          <folding>
-            <element signature="e#14#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/chat_room_model/chat_room.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/chat_room_model/room.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/message_model/message_model.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        <state relative-caret-position="818">
+          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="71" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/user_model/user.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        <state relative-caret-position="168">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/src/go1.12.15/src/time/time.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="1145" selection-start-line="1145" selection-end-line="1145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/go_data/pkg/mod/github.com/astaxie/beego@v1.12.0/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12">
+          <caret line="152" column="18" lean-forward="true" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -738,23 +466,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/chat_room.go">
+    <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="31" column="38" lean-forward="true" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding>
-            <element signature="e#21#110#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/service/chat_room_service/chat_room.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="58" column="31" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="31" />
+        <state relative-caret-position="180">
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
           <folding>
             <element signature="e#27#224#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/chat_room_model/chat_room.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="57" column="41" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/common_response/common_response.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/chat_room.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/chat_events/chat_body.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/chat_events/chat_events.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="90" column="19" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
+          <folding>
+            <element signature="e#21#275#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/message_model/message_model.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
