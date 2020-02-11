@@ -17,6 +17,8 @@ func CreateRoom(userID chat_room_model.UserID, roomName string) (*chat_room_mode
 func JoinRoom(userID chat_room_model.UserID, roomID chat_room_model.RoomID) (bool, error) {
 	userIDForModel := userID
 	roomIDForModel := roomID
+	logs.Info("join romm room_id:", roomIDForModel)
+	logs.Info(chat_room_model.RoomList)
 	if _, ok := chat_room_model.RoomList[roomIDForModel]; !ok {
 		return false, errors.New("room id is not exist")
 	}

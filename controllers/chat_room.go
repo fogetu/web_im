@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -14,6 +15,24 @@ import (
 
 type ChatRoomController struct {
 	beego.Controller
+}
+
+type allRoomListItem struct {
+	RoomID   chat_room_model.RoomID
+	RoomName string
+	//UserIDList   list.List
+	RoomPic        string
+	LastMsg        string
+	CreateByUserID chat_room_model.UserID
+}
+
+func (chat *ChatRoomController) GetRoomList() {
+	var allRoomList []allRoomListItem
+	for _, v := range chat_room_model.RoomList {
+		allRoomList = append(allRoomList, allRoomListItem{RoomID: v.RoomID, RoomName: v.RoomName, RoomPic: v.RoomPic, LastMsg: v.LastMsg, CreateByUserID: v.CreateByUserID})
+	}
+	chat.Data["json"] = common_response.Res{State: true, Msg: "ok", Data: allRoomList}
+	chat.ServeJSON()
 }
 
 func (chat *ChatRoomController) CreateRoom() {
@@ -110,12 +129,95 @@ func (chat *ChatRoomController) Upgrade() {
 	}()
 	// Message receive loop.
 	for {
-		_, p, err := ws.ReadMessage()
+		_, body, err := ws.ReadMessage()
 		fmt.Println(err)
 		if err != nil {
 			return
 		}
-		chat_events.Publish <- chat_events.New(chat_events.EventMessage, time.Now().Unix(),
-			string(p))
+		var msgParentDataOrigin chat_events.MessageParentBody
+		err = json.Unmarshal([]byte(body), &msgParentDataOrigin)
+		if err != nil {
+			logs.Error(err)
+			return
+		}
+		switch msgParentDataOrigin.ChatMstType {
+		case chat_events.ChatMsgTypeCommon:
+			var msgParentData struct {
+				chat_events.MessageParentBody
+				Content chat_events.MessageBody
+			}
+			err = json.Unmarshal([]byte(body), &msgParentData)
+			if err != nil {
+				return
+			}
+			data, err := json.Marshal(msgParentData.Content)
+			if err != nil {
+				return
+			}
+			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
+				string(data))
+		case chat_events.ChatMsgTypeJoin:
+			var msgParentData struct {
+				chat_events.MessageParentBody
+				Content chat_events.MessageJoinRoomBody
+			}
+			err = json.Unmarshal([]byte(body), &msgParentData)
+			if err != nil {
+				return
+			}
+			data, err := json.Marshal(msgParentData.Content)
+			if err != nil {
+				return
+			}
+			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
+				string(data))
+		case chat_events.ChatMsgTypeLeave:
+			var msgParentData struct {
+				chat_events.MessageParentBody
+				Content chat_events.MessageLeaveRoomBody
+			}
+			err = json.Unmarshal([]byte(body), &msgParentData)
+			if err != nil {
+				return
+			}
+			data, err := json.Marshal(msgParentData.Content)
+			if err != nil {
+				return
+			}
+			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
+				string(data))
+		case chat_events.ChatMsgTypeOnline:
+			var msgParentData struct {
+				chat_events.MessageParentBody
+				Content chat_events.MessageOnlineBody
+			}
+			err = json.Unmarshal([]byte(body), &msgParentData)
+			if err != nil {
+				return
+			}
+			data, err := json.Marshal(msgParentData.Content)
+			if err != nil {
+				return
+			}
+			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
+				string(data))
+		case chat_events.ChatMsgTypeOffline:
+			var msgParentData struct {
+				chat_events.MessageParentBody
+				Content chat_events.MessageOfflineBody
+			}
+			err = json.Unmarshal([]byte(body), &msgParentData)
+			if err != nil {
+				return
+			}
+			data, err := json.Marshal(msgParentData.Content)
+			if err != nil {
+				return
+			}
+			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
+				string(data))
+		default:
+			return
+		}
 	}
 }

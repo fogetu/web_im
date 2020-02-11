@@ -1,6 +1,7 @@
 package chat_room_model
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/gorilla/websocket"
 	"math/rand"
 
@@ -60,5 +61,7 @@ func New(userID UserID, name string) *ChatRoom {
 	index := rand.Intn(1)
 	RoomList[myRoomID] = &ChatRoom{RoomName: name, RoomID: myRoomID,
 		RoomPic: roomPics[index], RoomUserList: RoomUserList, CreateByUserID: userID}
+	logs.Info("创建新的ROOM:")
+	logs.Info(RoomList)
 	return RoomList[myRoomID]
 }
