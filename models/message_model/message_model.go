@@ -17,9 +17,7 @@ type MessageModel struct {
 	UserID      chat_room_model.UserID
 }
 
-var MessageData list.List
-
-var RoomMessage = make(map[chat_room_model.RoomID]list.List)
+var RoomMessage = make(map[chat_room_model.RoomID]*list.List)
 
 var (
 	IDIncreaseForMsg uint64

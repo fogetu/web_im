@@ -11,4 +11,5 @@ require (
 	github.com/beego/samples/todo v0.0.0-00010101000000-000000000000
 	github.com/fogetu/web_im v0.0.0-00010101000000-000000000000
 	github.com/gorilla/websocket v1.4.1
+	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644 // indirect
 )

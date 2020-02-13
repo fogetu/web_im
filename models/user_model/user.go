@@ -1,12 +1,14 @@
 package user_model
 
-var BaseMap = make(map[int32]*BaseModel)
+import "github.com/fogetu/web_im/models/chat_room_model"
+
+var BaseMap = make(map[chat_room_model.UserID]*BaseModel)
 
 type OrmUserModel struct {
 }
 
 type BaseModel struct {
-	UserID  uint32
+	UserID  chat_room_model.UserID
 	Name    string
 	HeadPic string
 }
@@ -25,7 +27,7 @@ func init() {
 	BaseMap[10] = &BaseModel{10, "user_10", "https://static-upload.local.com/amodvis/static/image/bc/5a/1c/bc5a1c00e7bbda9074e6626f12e8c0ac.jpeg"}
 }
 
-func (u OrmUserModel) GetByID(userID int32) *BaseModel {
+func (u OrmUserModel) GetByID(userID chat_room_model.UserID) *BaseModel {
 	if _, ok := BaseMap[userID]; ok {
 		return BaseMap[userID]
 	} else {

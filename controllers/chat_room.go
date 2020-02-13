@@ -11,6 +11,8 @@ import (
 	"github.com/fogetu/web_im/service/websocket"
 	"time"
 	"web_im/models/common_response"
+	"web_im/models/message_model"
+	"web_im/models/user_model"
 )
 
 type ChatRoomController struct {
@@ -101,6 +103,44 @@ func (chat *ChatRoomController) LeaveRoom() {
 	}
 }
 
+func (chat *ChatRoomController) GetRoomMessage() () {
+	roomID, err := chat.GetInt("room_id")
+	if err != nil {
+		chat.Redirect("/", 302)
+		return
+	}
+	_, err = chat.GetInt("page")
+	if err != nil {
+		chat.Redirect("/", 302)
+		return
+	}
+	_, err = chat.GetInt("page_size")
+	if err != nil {
+		chat.Redirect("/", 302)
+		return
+	}
+	if data, ok := message_model.RoomMessage[chat_room_model.RoomID(roomID)]; ok {
+		type RetMsg struct {
+			chat_events.MessageBody
+			UserName string
+		}
+		var allMsg [] RetMsg
+		for item := data.Front(); nil != item; item = item.Next() {
+			temUser := item.Value.(chat_events.MessageBody)
+			OrmUserModel := user_model.OrmUserModel{}
+			var retMsg = RetMsg{MessageBody: temUser, UserName: OrmUserModel.GetByID(temUser.UserID).Name}
+			allMsg = append(allMsg, retMsg)
+		}
+		chat.Data["json"] = common_response.Res{State: true, Msg: "success", Data: allMsg}
+		chat.ServeJSON()
+	} else {
+		var allMsg [] chat_events.MessageBody
+		chat.Data["json"] = common_response.Res{State: true, Msg: "无数据", Data: allMsg}
+		chat.ServeJSON()
+	}
+
+}
+
 // 进入聊天页面就升级协议
 func (chat *ChatRoomController) Upgrade() {
 	userID, err := chat.GetInt("user_id")
@@ -134,6 +174,8 @@ func (chat *ChatRoomController) Upgrade() {
 		if err != nil {
 			return
 		}
+		logs.Info("receive------message")
+		logs.Info(string(body))
 		var msgParentDataOrigin chat_events.MessageParentBody
 		err = json.Unmarshal([]byte(body), &msgParentDataOrigin)
 		if err != nil {
@@ -184,6 +226,8 @@ func (chat *ChatRoomController) Upgrade() {
 			if err != nil {
 				return
 			}
+			logs.Info("-----------user leave event-----------")
+			logs.Info(string(data))
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
 				string(data))
 		case chat_events.ChatMsgTypeOnline:

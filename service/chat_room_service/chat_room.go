@@ -23,7 +23,7 @@ func JoinRoom(userID chat_room_model.UserID, roomID chat_room_model.RoomID) (boo
 		return false, errors.New("room id is not exist")
 	}
 	OrmUserModel := ormUer.OrmUserModel{}
-	userName := OrmUserModel.GetByID(int32(userID)).Name
+	userName := OrmUserModel.GetByID(userIDForModel).Name
 	// 优先改变刚刚加入ROOM的当前用户状态
 	if userMap, ok := chat_room_model.RoomUserList[userIDForModel]; ok {
 		if user, ok := userMap[roomIDForModel]; ok {
@@ -55,7 +55,15 @@ func LeaveRoom(userID chat_room_model.UserID, roomID chat_room_model.RoomID) (bo
 
 // 用户上线
 func UserOnline(userID chat_room_model.UserID, ws *websocket.Conn) (bool, error) {
-	chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn: ws}
+
+	if _, ok := chat_room_model.ActiveUser[userID]; !ok {
+		logs.Info("用户上线,用户未加入任何ROOM:", userID)
+		chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn: []*websocket.Conn{ws}}
+		return true, nil
+	}
+	connects := chat_room_model.ActiveUser[userID].Conn
+	connects = append(connects, ws)
+	chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn: connects}
 	// 他的Join的所有ROOM改变状态
 	if _, ok := chat_room_model.RoomUserList[userID]; !ok {
 		logs.Info("用户上线,用户未加入任何ROOM:", userID)
@@ -68,10 +76,26 @@ func UserOnline(userID chat_room_model.UserID, ws *websocket.Conn) (bool, error)
 	return true, nil
 }
 
+func removeWs(connects []*websocket.Conn, k int) []*websocket.Conn {
+	return append(connects[:k], connects[k+1:]...)
+}
+
 // 用户下线
 func UserOffline(userID chat_room_model.UserID, ws *websocket.Conn) (bool, error) {
 	// 他的Join的所有ROOM改变状态
-	defer ws.Close()
+	defer func() {
+		connects := chat_room_model.ActiveUser[userID].Conn
+		for k, wsCache := range connects {
+			if ws == wsCache {
+				chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn:
+				removeWs(chat_room_model.ActiveUser[userID].Conn, k)}
+			}
+		}
+		err := ws.Close()
+		if err != nil {
+			logs.Error("close ws error")
+		}
+	}()
 	if _, ok := chat_room_model.RoomUserList[userID]; !ok {
 		logs.Info("用户下线,用户未加入任何ROOM:", userID)
 		return true, nil

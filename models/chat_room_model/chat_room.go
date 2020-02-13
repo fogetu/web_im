@@ -29,8 +29,11 @@ type RoomUserMap map[UserID]UserChatRoomMap
 type UserChatRoomMap map[RoomID]UserChatRoom
 
 type ActiveUserInfo struct {
-	Conn *websocket.Conn
+	Conn []*websocket.Conn
 }
+
+
+
 
 var (
 	IDIncreamForRoom int32

@@ -1,6 +1,7 @@
 package chat_events
 
 import (
+	"container/list"
 	"encoding/json"
 	"github.com/astaxie/beego/logs"
 	"github.com/fogetu/web_im/models/chat_room_model"
@@ -8,6 +9,7 @@ import (
 	"github.com/gorilla/websocket"
 	"time"
 	"web_im/models/message_model"
+	"web_im/models/user_model"
 )
 
 type Event struct {
@@ -29,6 +31,8 @@ func init() {
 				case ChatMsgTypeOnline:
 					onlineHandle(event.Body)
 				case ChatMsgTypeOffline:
+					logs.Info("-----ChatMsgTypeOfflineChatMsgTypeOffline-----")
+					logs.Info(event.Body)
 					offlineHandle(event.Body)
 				case ChatMsgTypeJoin:
 					joinHandle(event.Body)
@@ -49,17 +53,13 @@ func onlineHandle(body string) {
 		logs.Error(err)
 		return
 	}
-	userID := msgData.UserID
-	ws := chat_room_model.ActiveUser[userID].Conn
-	_, errRet := chat_room_service.UserOnline(userID, ws)
-	if errRet != nil {
-		logs.Error("Cannot setup user online:", errRet)
-	}
 	// 广播在线用户
 	for _, value := range chat_room_model.ActiveUser {
-		ws := value.Conn
-		if ws != nil {
-			broadcastForOnlineMsg(ws, msgData)
+		connects := value.Conn
+		if connects != nil {
+			for _, ws := range connects {
+				broadcastForOnlineMsg(ws, msgData)
+			}
 		}
 	}
 }
@@ -71,17 +71,13 @@ func offlineHandle(body string) {
 		logs.Error(err)
 		return
 	}
-	userID := msgData.UserID
-	ws := chat_room_model.ActiveUser[userID].Conn
-	_, errRet := chat_room_service.UserOnline(userID, ws)
-	if errRet != nil {
-		logs.Error("Cannot setup user online:", errRet)
-	}
 	// 广播在线用户
 	for _, value := range chat_room_model.ActiveUser {
-		ws := value.Conn
-		if ws != nil {
-			broadcastForOfflineMsg(ws, msgData)
+		connects := value.Conn
+		if connects != nil {
+			for _, ws := range connects {
+				broadcastForOfflineMsg(ws, msgData)
+			}
 		}
 	}
 }
@@ -100,9 +96,11 @@ func joinHandle(body string) {
 	}
 	// 广播在线用户
 	for _, value := range chat_room_model.ActiveUser {
-		ws := value.Conn
-		if ws != nil {
-			broadcastForJoinMsg(ws, msgData)
+		connects := value.Conn
+		if connects != nil {
+			for _, ws := range connects {
+				broadcastForJoinMsg(ws, msgData)
+			}
 		}
 	}
 }
@@ -121,9 +119,11 @@ func leaveHandle(body string) {
 	}
 	// 广播在线用户
 	for _, value := range chat_room_model.ActiveUser {
-		ws := value.Conn
-		if ws != nil {
-			broadcastForLeaveMsg(ws, msgData)
+		connects := value.Conn
+		if connects != nil {
+			for _, ws := range connects {
+				broadcastForLeaveMsg(ws, msgData)
+			}
 		}
 	}
 }
@@ -137,8 +137,10 @@ func messageHandle(body string) {
 	}
 	msgData.MsgID = message_model.GetIncreamID()
 	msgData.CreateAt = time.Now().Unix()
-	//msgData.UserID = chat_events.DecodeToken(msgData.UserToken)
-	message_model.MessageData.PushBack(msgData)
+	if _, ok := message_model.RoomMessage[msgData.RoomID]; !ok {
+		message_model.RoomMessage[msgData.RoomID] = &list.List{}
+	}
+	message_model.RoomMessage[msgData.RoomID].PushBack(msgData)
 	// 广播当前ROOM在线用户
 	roomUsers := chat_room_model.RoomList[msgData.RoomID].RoomUserList
 	for userID, value := range roomUsers {
@@ -146,9 +148,11 @@ func messageHandle(body string) {
 		if isOnline != true {
 			continue
 		}
-		ws := chat_room_model.ActiveUser[userID].Conn
-		if ws != nil {
-			broadcastForCommonMsg(ws, msgData)
+		connects := chat_room_model.ActiveUser[userID].Conn
+		if connects != nil {
+			for _, ws := range connects {
+				broadcastForCommonMsg(ws, msgData)
+			}
 		}
 	}
 }
@@ -214,7 +218,13 @@ func broadcastForLeaveMsg(ws *websocket.Conn, msgData MessageLeaveRoomBody) {
 }
 
 func broadcastForCommonMsg(ws *websocket.Conn, msgData MessageBody) {
-	broadcastBody := BroadcastMessageBody{ChatMstType: ChatMsgTypeCommon, Content: msgData}
+	type RetMsg struct {
+		MessageBody
+		UserName string
+	}
+	OrmUserModel := user_model.OrmUserModel{}
+	var retMsg = RetMsg{MessageBody: msgData, UserName: OrmUserModel.GetByID(msgData.UserID).Name}
+	broadcastBody := BroadcastMessageBody{ChatMstType: ChatMsgTypeCommon, Content: retMsg}
 	b, err := json.Marshal(broadcastBody)
 	if err != nil {
 		logs.Error(err)
@@ -222,6 +232,8 @@ func broadcastForCommonMsg(ws *websocket.Conn, msgData MessageBody) {
 	}
 	if ws.WriteMessage(websocket.TextMessage, b) != nil {
 		// User disconnected.
+		logs.Error("向客户端写信息失败")
+		logs.Error(`{"UserID":` + string(msgData.UserID) + `}`)
 		Publish <- New(ChatMsgTypeOffline, time.Now().Unix(), `{"UserID":`+string(msgData.UserID)+`}`)
 		logs.Info("ChatMsgType:ChatMsgTypeCommon User disconnected:", msgData.RoomID, "user_id:", msgData.UserID)
 	} else {
