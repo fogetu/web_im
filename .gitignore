@@ -1,5 +1,6 @@
 /vendor
 /.vscode
 /go.sum
+/go.mod
 /storage
 /.idea
