@@ -32,9 +32,6 @@ type ActiveUserInfo struct {
 	Conn []*websocket.Conn
 }
 
-
-
-
 var (
 	IDIncreamForRoom int32
 )
@@ -42,8 +39,8 @@ var RoomUserList = make(RoomUserMap)
 var RoomList = make(map[RoomID]*ChatRoom)
 var ActiveUser = make(map[UserID]ActiveUserInfo)
 
-var roomPics = [2]string{"https://static-upload.local.com/amodvis/static/image/c7/93/54/c793540262a2156d68d10d427a594a02.png",
-	"https://static-upload.local.com/amodvis/static/image/92/87/35/928735f507fbc8e411a471210212d028.jpg"}
+var roomPics = [2]string{"http://106.54.93.177:9091/amodvis/static/image/27/a0/a3/27a0a33aeac4e3b4b8b59a43edb34057.jpeg",
+	"http://106.54.93.177:9091/amodvis/static/image/84/de/4c/84de4c5d166dea9a96096ed49d649fa9.jpg"}
 
 type UserBase struct {
 	UserID  uint32
