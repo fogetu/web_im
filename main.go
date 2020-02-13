@@ -23,10 +23,6 @@ func init() {
 	beego.InsertFilter("*", beego.BeforeRouter, FilterGateWay)
 }
 func main() {
-	beego.Router("/", &controllers.MainController{})
-	beego.Router("/task/", &controllers.TaskController{}, "get:ListTasks;post:NewTask")
-	beego.Router("/task/:id:int", &controllers.TaskController{}, "get:GetTask;put:UpdateTask")
-
 	beego.Router("/chat_room/get_all_room", &controllers.ChatRoomController{}, "get:GetRoomList;options:GetRoomMessage")
 	beego.Router("/chat_room/upgrade", &controllers.ChatRoomController{}, "get:Upgrade")
 	beego.Router("/chat_room/create", &controllers.ChatRoomController{}, "get:CreateRoom;post:CreateRoom")
