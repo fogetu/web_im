@@ -1,6 +1,8 @@
 package user_model
 
-import "github.com/fogetu/web_im/models/chat_room_model"
+import (
+	"github.com/fogetu/web_im/models/chat_room_model"
+)
 
 var BaseMap = make(map[chat_room_model.UserID]*BaseModel)
 
@@ -13,24 +15,20 @@ type BaseModel struct {
 	HeadPic string
 }
 
+var MockHeadPic = make([]string, 5, 5)
+
 func init() {
 	// mock data
-	BaseMap[1] = &BaseModel{1, "user_1", "https://static-upload.local.com/amodvis/static/image/14/9c/ff/149cffa10522fed6855612a647924663.jpeg"}
-	BaseMap[2] = &BaseModel{2, "user_2", "https://static-upload.local.com/amodvis/static/image/bc/5a/1c/bc5a1c00e7bbda9074e6626f12e8c0ac.jpeg"}
-	BaseMap[3] = &BaseModel{3, "user_3", "https://static-upload.local.com/amodvis/static/image/54/3e/2f/543e2f63c6ed1a043757c2e3c2d975c5.jpeg"}
-	BaseMap[4] = &BaseModel{4, "user_4", "https://static-upload.local.com/amodvis/static/image/14/9c/ff/149cffa10522fed6855612a647924663.jpeg"}
-	BaseMap[5] = &BaseModel{5, "user_5", "https://static-upload.local.com/amodvis/static/image/14/9c/ff/149cffa10522fed6855612a647924663.jpeg"}
-	BaseMap[6] = &BaseModel{6, "user_6", "https://static-upload.local.com/amodvis/static/image/14/9c/ff/149cffa10522fed6855612a647924663.jpeg"}
-	BaseMap[7] = &BaseModel{7, "user_7", "https://static-upload.local.com/amodvis/static/image/bc/5a/1c/bc5a1c00e7bbda9074e6626f12e8c0ac.jpeg"}
-	BaseMap[8] = &BaseModel{8, "user_8", "https://static-upload.local.com/amodvis/static/image/54/3e/2f/543e2f63c6ed1a043757c2e3c2d975c5.jpeg"}
-	BaseMap[9] = &BaseModel{9, "user_9", "https://static-upload.local.com/amodvis/static/image/bc/5a/1c/bc5a1c00e7bbda9074e6626f12e8c0ac.jpeg"}
-	BaseMap[10] = &BaseModel{10, "user_10", "https://static-upload.local.com/amodvis/static/image/bc/5a/1c/bc5a1c00e7bbda9074e6626f12e8c0ac.jpeg"}
+	MockHeadPic[0] = "http://106.54.93.177:9091/amodvis/static/image/fd/83/05/fd8305e6d8cad189dc342aa8ac8aa5a3.jpeg"
+	MockHeadPic[1] = "http://106.54.93.177:9091/amodvis/static/image/c6/98/36/c698367fe675370a8d82d513430c6f3e.jpeg"
+	MockHeadPic[2] = "http://106.54.93.177:9091/amodvis/static/image/84/de/4c/84de4c5d166dea9a96096ed49d649fa9.jpg"
+	MockHeadPic[3] = "http://106.54.93.177:9091/amodvis/static/image/d7/06/9a/d7069a2c5673d3ea42cdb4580c32338a.jpg"
+	MockHeadPic[4] = "http://106.54.93.177:9091/amodvis/static/image/64/e2/85/64e2856272980d13e3b60a9f9d46cabf.jpeg"
 }
 
 func (u OrmUserModel) GetByID(userID chat_room_model.UserID) *BaseModel {
-	if _, ok := BaseMap[userID]; ok {
-		return BaseMap[userID]
-	} else {
-		return nil
-	}
+	index := userID % 5
+	var name = "用户" + string(userID)
+	userInfo := BaseModel{UserID: userID, Name: name, HeadPic: MockHeadPic[index]}
+	return &userInfo
 }
