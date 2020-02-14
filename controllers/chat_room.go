@@ -172,7 +172,7 @@ func (chat *ChatRoomController) Upgrade() {
 		_, body, err := ws.ReadMessage()
 		fmt.Println(err)
 		if err != nil {
-			return
+			continue
 		}
 		logs.Info("receive------message")
 		logs.Info(string(body))
@@ -180,7 +180,7 @@ func (chat *ChatRoomController) Upgrade() {
 		err = json.Unmarshal([]byte(body), &msgParentDataOrigin)
 		if err != nil {
 			logs.Error(err)
-			return
+			continue
 		}
 		switch msgParentDataOrigin.ChatMstType {
 		case chat_events.ChatMsgTypeCommon:
@@ -190,11 +190,14 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
-				return
+				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
-				return
+				break
+			}
+			if _, ok := chat_room_model.RoomList[msgParentData.Content.RoomID]; !ok {
+				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
 				string(data))
@@ -205,11 +208,11 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
-				return
+				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
-				return
+				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
 				string(data))
@@ -220,11 +223,11 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
-				return
+				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
-				return
+				break
 			}
 			logs.Info("-----------user leave event-----------")
 			logs.Info(string(data))
@@ -237,11 +240,11 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
-				return
+				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
-				return
+				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
 				string(data))
@@ -252,16 +255,16 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
-				return
+				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
-				return
+				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
 				string(data))
 		default:
-			return
+			break
 		}
 	}
 }
