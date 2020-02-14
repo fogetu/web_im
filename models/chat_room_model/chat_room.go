@@ -21,7 +21,7 @@ type ChatRoom struct {
 
 type RoomID int32
 
-type UserID uint32
+type UserID uint64
 
 // 用户信息for room
 type RoomUserMap map[UserID]UserChatRoomMap
