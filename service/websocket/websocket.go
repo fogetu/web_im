@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"github.com/gorilla/websocket"
 	"net/http"
-	"time"
 )
 
 func Upgrade(w http.ResponseWriter, r *http.Request, responseHeader http.Header,
 	readBufSize, writeBufSize int) (*websocket.Conn, error) {
-	u := websocket.Upgrader{HandshakeTimeout: time.Duration(time.Second * 5), ReadBufferSize: readBufSize, WriteBufferSize: writeBufSize}
+	u := websocket.Upgrader{ReadBufferSize: readBufSize, WriteBufferSize: writeBufSize}
 	u.Error = func(w http.ResponseWriter, r *http.Request, status int, reason error) {
 		// don't return errors to maintain backwards compatibility
 	}
