@@ -2,6 +2,7 @@ package user_model
 
 import (
 	"github.com/fogetu/web_im/models/chat_room_model"
+	"strconv"
 )
 
 var BaseMap = make(map[chat_room_model.UserID]*BaseModel)
@@ -28,7 +29,7 @@ func init() {
 
 func (u OrmUserModel) GetByID(userID chat_room_model.UserID) *BaseModel {
 	index := userID % 5
-	var name = "用户" + string(userID)
+	var name = `用户` + strconv.FormatUint(uint64(userID), 10)
 	userInfo := BaseModel{UserID: userID, Name: name, HeadPic: MockHeadPic[index]}
 	return &userInfo
 }
