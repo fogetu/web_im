@@ -190,13 +190,16 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
+				logs.Error("message------1")
 				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
+				logs.Error("message------2")
 				break
 			}
 			if _, ok := chat_room_model.RoomList[msgParentData.Content.RoomID]; !ok {
+				logs.Error("message------3")
 				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
@@ -208,10 +211,12 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
+				logs.Error("message------4")
 				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
+				logs.Error("message------5")
 				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
@@ -223,10 +228,12 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
+				logs.Error("message------6")
 				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
+				logs.Error("message------7")
 				break
 			}
 			logs.Info("-----------user leave event-----------")
@@ -240,10 +247,12 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
+				logs.Error("message------8")
 				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
+				logs.Error("message------9")
 				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
@@ -255,10 +264,12 @@ func (chat *ChatRoomController) Upgrade() {
 			}
 			err = json.Unmarshal([]byte(body), &msgParentData)
 			if err != nil {
+				logs.Error("message------10")
 				break
 			}
 			data, err := json.Marshal(msgParentData.Content)
 			if err != nil {
+				logs.Error("message------11")
 				break
 			}
 			chat_events.Publish <- chat_events.New(msgParentData.ChatMstType, time.Now().Unix(),
