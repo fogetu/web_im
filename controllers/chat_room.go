@@ -172,7 +172,8 @@ func (chat *ChatRoomController) Upgrade() {
 		_, body, err := ws.ReadMessage()
 		fmt.Println(err)
 		if err != nil {
-			continue
+			logs.Info("receive------skip:", err)
+			return
 		}
 		logs.Info("receive------message")
 		logs.Info(string(body))
