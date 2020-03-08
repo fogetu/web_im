@@ -4,7 +4,12 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/logs"
+	_ "github.com/astaxie/beego/migration"
+	_ "github.com/astaxie/beego/orm"
 	"github.com/fogetu/web_im/controllers"
+	_ "github.com/go-sql-driver/mysql"
+	"web_im/health_check"
+	"web_im/jobs"
 )
 
 func init() {
@@ -22,7 +27,10 @@ func init() {
 	}
 	beego.InsertFilter("*", beego.BeforeRouter, FilterGateWay)
 }
+
 func main() {
+	health_check.Register()
+	jobs.Register()
 	beego.Router("/chat_room/get_all_room", &controllers.ChatRoomController{}, "get:GetRoomList;options:GetRoomMessage")
 	beego.Router("/chat_room/upgrade", &controllers.ChatRoomController{}, "get:Upgrade")
 	beego.Router("/chat_room/create", &controllers.ChatRoomController{}, "get:CreateRoom;post:CreateRoom")
