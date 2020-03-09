@@ -103,7 +103,7 @@ func (chat *ChatRoomController) LeaveRoom() {
 	}
 }
 
-func (chat *ChatRoomController) GetRoomMessage() () {
+func (chat *ChatRoomController) GetRoomMessage() {
 	roomID, err := chat.GetInt("room_id")
 	if err != nil {
 		chat.Redirect("/", 302)
@@ -124,7 +124,7 @@ func (chat *ChatRoomController) GetRoomMessage() () {
 			chat_events.MessageBody
 			UserName string
 		}
-		var allMsg [] RetMsg
+		var allMsg []RetMsg
 		for item := data.Front(); nil != item; item = item.Next() {
 			temUser := item.Value.(chat_events.MessageBody)
 			OrmUserModel := user_model.OrmUserModel{}
@@ -134,7 +134,7 @@ func (chat *ChatRoomController) GetRoomMessage() () {
 		chat.Data["json"] = common_response.Res{State: true, Msg: "success", Data: allMsg}
 		chat.ServeJSON()
 	} else {
-		var allMsg [] chat_events.MessageBody
+		var allMsg []chat_events.MessageBody
 		chat.Data["json"] = common_response.Res{State: true, Msg: "无数据", Data: allMsg}
 		chat.ServeJSON()
 	}

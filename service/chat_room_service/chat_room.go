@@ -35,8 +35,7 @@ func JoinRoom(userID chat_room_model.UserID, roomID chat_room_model.RoomID) (boo
 			logs.Info("新用户加入:", userName, "ROOM_ID:", roomID, "FROM:1")
 		}
 	} else {
-		chat_room_model.RoomUserList[userIDForModel] = chat_room_model.UserChatRoomMap{roomIDForModel:
-		chat_room_model.UserChatRoom{RoomID: roomIDForModel, JoinTime: time.Now().Unix(), IsOnline: true}}
+		chat_room_model.RoomUserList[userIDForModel] = chat_room_model.UserChatRoomMap{roomIDForModel: chat_room_model.UserChatRoom{RoomID: roomIDForModel, JoinTime: time.Now().Unix(), IsOnline: true}}
 		logs.Info("新用户加入:", userName, "ROOM_ID:", roomID, "FROM:2")
 	}
 	return true, nil
@@ -87,8 +86,7 @@ func UserOffline(userID chat_room_model.UserID, ws *websocket.Conn) (bool, error
 		connects := chat_room_model.ActiveUser[userID].Conn
 		for k, wsCache := range connects {
 			if ws == wsCache {
-				chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn:
-				removeWs(chat_room_model.ActiveUser[userID].Conn, k)}
+				chat_room_model.ActiveUser[userID] = chat_room_model.ActiveUserInfo{Conn: removeWs(chat_room_model.ActiveUser[userID].Conn, k)}
 			}
 		}
 		err := ws.Close()
